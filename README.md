@@ -1,5 +1,7 @@
 # Zero-Knowledge-Panagram
 
+A blockchain-based Panagram (anagram puzzle) game that leverages zero-knowledge proofs (ZKPs) for privacy and fairness. The smart contracts are written in Solidity, while zero-knowledge circuits and proof generation are handled using Noir and Barretenberg. This setup allows users to prove they have solved a puzzle without revealing the solution, ensuring both transparency and privacy on-chain.
+
 ## Getting Started
 
 ### Prerequisites
