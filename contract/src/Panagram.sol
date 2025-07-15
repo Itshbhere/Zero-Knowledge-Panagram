@@ -74,20 +74,18 @@ contract Panagram is ERC1155, Ownable {
         bool isValid = verifier.verify(proof, PublicInputs);
         if (!isValid) {
             revert InvalidProof();
-        } else {
-            LastGuessRound[msg.sender] = RoundNumber;
-            if (CurrentroundWinner != address(0)) {
-                _mint(msg.sender, 1, 1, "");
-                emit Panagram__RunnerUpCrowned(CurrentroundWinner, RoundNumber);
-                return true;
-            } else {
-                CurrentroundWinner = msg.sender;
-                _mint(msg.sender, 0, 1, "");
-                emit Panagram__WinnerCrowned(msg.sender, RoundNumber);
-                return true;
-            }
         }
-        return isValid;
+        LastGuessRound[msg.sender] = RoundNumber;
+        if (CurrentroundWinner != address(0)) {
+            _mint(msg.sender, 1, 1, "");
+            emit Panagram__RunnerUpCrowned(CurrentroundWinner, RoundNumber);
+            return true;
+        } else {
+            CurrentroundWinner = msg.sender;
+            _mint(msg.sender, 0, 1, "");
+            emit Panagram__WinnerCrowned(msg.sender, RoundNumber);
+            return true;
+        }
     }
 
     function updateVerifier(IVerifier newVerifier) external {
