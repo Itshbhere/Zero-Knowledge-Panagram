@@ -23,8 +23,9 @@ export default async function generateProof() {
     const bb = new UltraHonkBackend(Circuit.bytecode, { threads: 1 });
     // 4. Create The Inputs
     const inputs = {
-      answer_hash: inputArray[0],
-      guess_hash: inputArray[1],
+      guess_hash: inputArray[0],
+      answer_hash: inputArray[1],
+      address: inputArray[2],
     };
     // 5. Execute the circuit with the inputs to create the witness
     const { witness } = await noir.execute(inputs);

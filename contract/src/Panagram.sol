@@ -69,8 +69,9 @@ contract Panagram is ERC1155, Ownable {
             revert GuessAlreadyMade(msg.sender, RoundNumber);
         }
 
-        bytes32[] memory PublicInputs = new bytes32[](1);
+        bytes32[] memory PublicInputs = new bytes32[](2);
         PublicInputs[0] = s_answer;
+        PublicInputs[1] = bytes32(uint256(uint160(msg.sender)));
         bool isValid = verifier.verify(proof, PublicInputs);
         if (!isValid) {
             revert InvalidProof();
